@@ -1,5 +1,5 @@
 {
-  "name": "backend-captcha-cash",
+  "name": "backend",
   "version": "1.0.0",
   "description": "building and connecting to frontend",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "nodemon index.js",
     "dev":"concurrently \"nodemon index.js\" \"cd frontend && npm start\""
   },
-  "author": "Abhishek Shah",
+  "author": "yash mishra",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.3",

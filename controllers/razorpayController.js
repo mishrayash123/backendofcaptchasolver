@@ -1,34 +1,27 @@
-// section 1: importing Razorpay
 const Razorpay = require("razorpay");
 const User = require("../models/UserSchema");
-// section 2: initialize Razorpay instance
-
-// note: add your own credentials to check the razorpay dashboard
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET, 
 });
 
-// section 3: payout route
 const handlePayout = async (req, res) => {
     try {
-      console.log("Request body received:", req.body); // Debug log
-  
       const { email } = req.body;
       console.log(email)
       if (!email) {
-        console.log("Missing email in request body"); // Log the issue
+        console.log("Missing email in request body"); 
         return res.status(400).json({ message: "Name is required" });
       }
   
       const user = await User.findOne({ email });
       if (!user) {
-        console.log("User not found:", email); // Log if user is missing
+        console.log("User not found:", email); 
         return res.status(404).json({ message: "User not found" });
       }
       console.log(user)
       if (user.Amount <= 0) {
-        console.log("No amount to payout for user:", email); // Log no payout issue
+        console.log("No amount to payout for user:", email);
         return res.status(400).json({ message: "No amount to payout" });
       }
   
@@ -53,6 +46,4 @@ const handlePayout = async (req, res) => {
     }
   };
   
-
-// section 4: exporting new function
 module.exports = handlePayout;

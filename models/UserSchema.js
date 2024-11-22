@@ -1,8 +1,6 @@
-// section 1: importing modules and intializing
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// section 2: creating schema
 const userSchema = new Schema({
     email: {
       type: String,

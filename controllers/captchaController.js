@@ -1,7 +1,5 @@
-// section 1: importing models
 const User = require("../models/UserSchema");
 
-// section 2: generating random number betwwen 6 and 12 for captcha size
 const generateCaptcha = () => {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   return Array.from({ length: Math.floor(Math.random() * (12 - 6 + 1)) + 6 }, () =>
@@ -9,16 +7,14 @@ const generateCaptcha = () => {
   ).join("");
 };
 
-
-// section 3: get captcha and also create a new user
 const getCaptcha = async (req, res) => {
     try {
       const { email } = req.body;
-     
+      
       if (!email) {
         return res.status(400).json({ message: "email is required" });
       }
-  
+
       let user = await User.findOne({ email });
       if (!user.email) {
         return res.status(400).json({ message: "Invalid email provided" });
@@ -36,9 +32,6 @@ const getCaptcha = async (req, res) => {
     }
   };
   
-  
-
-//   section 4: verify captcha and also update the amount
 const verifyCaptcha = async (req, res) => {
   try {
     const { email, inputValue } = req.body;
